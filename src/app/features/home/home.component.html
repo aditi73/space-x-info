@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="heading__big">Space X launch programs</div>
+    <div class="flex flex--column">
+        <div class="side__nav">
+            <div class="card">
+                <div class="heading__small">Filters</div>
+                <div class="filter__type">Launch Year</div>
+                <div class="flex flex__attribute">
+                    <button class="btn btn--green" [ngClass]="{'btn--active':params['launch_year'] === year}" *ngFor="let year of launch_year" (click)="filter('launch_year',year)">{{year}}</button>
+                </div>
+                <div class="filter__type">Successful Launch</div>
+                <div class="flex flex__attribute">
+                    <button class="btn btn--green" [ngClass]="{'btn--active':params['launch_success'] === launch.value}" *ngFor="let launch of successful_launch" (click)="filter('launch_success',launch.value)">{{launch.name}}</button>
+                </div>
+                <div class="filter__type">Successful Landing</div>
+                <div class="flex flex__attribute">
+                    <button class="btn btn--green" [ngClass]="{'btn--active':params['land_success'] === landing.value}" *ngFor="let landing of successful_landing" (click)="filter('land_success',landing.value)">{{landing.name}}</button>
+                </div>
+            </div>  
+        </div>
+        <div class="content__view">
+            <div class="flex flex__attribute">
+                <div class="card card--width" *ngFor="let program of programs_list">
+                    <div class="card__image">
+                        <img [src]="program.links.mission_patch_small" />
+                    </div>
+                    <div class="card__main__heading">{{program.mission_name}} #{{program.flight_number}}</div>
+                    <div class="card__sub__heading">Mission Ids:</div>
+                    <ul class="card__content ul--list" *ngFor="let mission_id of program.mission_id">
+                        <li>{{mission_id}}</li>
+                    </ul>
+                    <div class="line__height">
+                        <span class="heading__small">Launch Year:</span> <span class="card__content"> {{program.launch_year}}</span>
+                    </div>
+                    <div class="line__height">
+                        <span class="heading__small">Successful Launch:</span> <span class="card__content"> {{program.launch_success}}</span>
+                    </div>
+                    <div class="line__height">
+                        <span class="heading__small">Successful Landing:</span> <span class="card__content"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer"><span class="heading__medium">Developed by:</span> Adity thakur</div>
+</div>
